@@ -7,5 +7,12 @@
 * */
 
 (function ($) {
-    
+
+    var slider;
+
+    var defOptions = {
+        slideShow: true,
+        interval: 500,
+        animation: 'slide'
+    };
 });
