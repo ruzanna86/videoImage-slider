@@ -4,6 +4,150 @@ body{
 
 .vim-wrapper{
     background-color: #eee;
+    /*width: 100%;
+    height: 500px;*/
+    margin: 20px auto;
+}
+.vim-slider{
+   list-style: none;
+   padding: 0;
+}
+
+.vim-slider .vimSlide-item {
+    position: relative;
+    display: none;
+}
+
+.vim-slider .vimSlide-item.active {
+    display: block;
+}
+
+.vim-slider .vimSlide-item img {
     width: 100%;
-    height: 500px;
+    height: 700px;
+    object-fit: cover;
+}
+
+/* Next, prev buttons*/
+.vim-wrapper .vimSlide-next,
+.vim-wrapper .vimSlide-prev {
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% + 32px);
+    width: auto;
+    padding: 16px;
+    color: transparent;
+    transition: 0.6s ease;
+    user-select: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.vim-wrapper .vimSlide-next {
+    background-image: url("../images/arrow_right.png");
+    right: 0;
+}
+
+.vim-wrapper .vimSlide-prev {
+    background-image: url("../images/arrow_left.png");
+    left: 0;
+}
+
+
+/* Animations */
+/* FADE */
+.fade {
+    -webkit-animation: fade 1.5s;
+    -moz-animation: fade 1.5s;
+    -o-animation: fade 1.5s;
+    animation: fade 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@-moz-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@-ms-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@-o-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* SLIDE */
+.slide {
+    -webkit-animation: slide 1.5s;
+    -moz-animation: slide 1.5s;
+    -o-animation: slide 1.5s;
+    animation: slide 1.5s;
+}
+
+@-webkit-keyframes slide {
+    from {
+        opacity: .4;
+        margin-left: 100%;
+    }
+    to {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+@-moz-keyframes slide {
+    from {
+        opacity: .4;
+        margin-left: 100%;
+    }
+    to {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+@-ms-keyframes slide {
+    from {
+        opacity: .4;
+        margin-left: 100%;
+    }
+    to {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+@-o-keyframes slide {
+    from {
+        opacity: .4;
+        margin-left: 100%;
+    }
+    to {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+@keyframes slide {
+    from {
+        opacity: .4;
+        margin-left: 100%;
+    }
+    to {
+        opacity: 1;
+        margin: 0;
+    }
 }

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6e3aba-ab7c-46f9-9f12-a4ec9cf48eaa" name="Default" comment="Added list of images(video) in html file.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/vimsilder.css" afterPath="$PROJECT_DIR$/css/vimsilder.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/vimslider.js" afterPath="$PROJECT_DIR$/js/vimslider.js" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="9" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="170">
+              <caret line="16" column="44" lean-forward="true" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -28,25 +27,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vimslider.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vimslider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/vimslider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="26" column="46" lean-forward="false" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
+            <state relative-caret-position="527">
+              <caret line="43" column="58" lean-forward="true" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1562417599645" expanded="true" signature="964:972" ph="..." />
-                <marker date="1562417599645" expanded="true" signature="1050:1058" ph="..." />
+                <marker date="1562420622412" expanded="true" signature="1467:1474" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vimsilder.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vimsilder.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/vimsilder.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            <state relative-caret-position="459">
+              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -72,9 +70,9 @@
         <option value="$PROJECT_DIR$/vimsilder.css" />
         <option value="$PROJECT_DIR$/vimslider.js" />
         <option value="$PROJECT_DIR$/css.css" />
+        <option value="$PROJECT_DIR$/js/vimslider.js" />
         <option value="$PROJECT_DIR$/css/vimsilder.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/vimslider.js" />
       </list>
     </option>
   </component>
@@ -119,6 +117,11 @@
               <item name="videoImage-slider" type="b2602c69:ProjectViewProjectNode" />
               <item name="videoImage-slider" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="videoImage-slider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="videoImage-slider" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="images" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="videoImage-slider" type="b2602c69:ProjectViewProjectNode" />
@@ -170,12 +173,12 @@
       <option name="presentableId" value="Default" />
       <updated>1562263613444</updated>
       <workItem from="1562263616771" duration="16599000" />
-      <workItem from="1562363205644" duration="11830000" />
+      <workItem from="1562363205644" duration="15783000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28429000" />
+    <option name="totallyTimeSpent" value="32382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -241,8 +244,7 @@
           <caret line="59" column="12" lean-forward="true" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="18" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1562417599645" expanded="true" signature="964:972" ph="..." />
-            <marker date="1562417599645" expanded="true" signature="1050:1058" ph="..." />
+            <marker date="1562420622412" expanded="true" signature="1467:1474" ph="..." />
           </folding>
         </state>
       </provider>
@@ -265,18 +267,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/vimsilder.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="9" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="26" selection-end-column="9" />
+        <state relative-caret-position="170">
+          <caret line="16" column="44" lean-forward="true" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -285,13 +279,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/vimslider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="26" column="46" lean-forward="false" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
+        <state relative-caret-position="527">
+          <caret line="43" column="58" lean-forward="true" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1562417599645" expanded="true" signature="964:972" ph="..." />
-            <marker date="1562417599645" expanded="true" signature="1050:1058" ph="..." />
+            <marker date="1562420622412" expanded="true" signature="1467:1474" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/arrow_left.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/vimsilder.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>

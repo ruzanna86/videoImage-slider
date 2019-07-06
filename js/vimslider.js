@@ -9,35 +9,53 @@
 (function($){
     jQuery.fn.vimslider = function(options){
         options = $.extend({
-            defColor:"aqua", //цвет элемента над которым нет курсора
-            hoverColor:"red" //цвет элемента на который наведен курсор
+            defColor:"white",
+            hoverColor:"red",
+            animation: "slide"
         }, options);
 
         var make = function(){
-            var i;
+            var slides = [];
+            var i = 0;
             var elements = "";
-            $(this).children().each(function (index, value) {
-                console.log(value);
-                console.log(value['data-type']);
-                // console.log(value.attr('data-url'));
-            });
-            console.log(this);
-            for (var i = 0; i < this.children.length; i++) {
+            var list = "";
+            $(this).children().each(function () {
+                var obj = {};
+                obj['data-url'] = $(this).data('url');
+                obj['data-type'] = $(this).data('type');
+                slides.push(obj);
+
                 var active = i == 0 ? 'active' : '';
-                console.log(this.children[i]);
-            }
-            $(this).wrap( "<div class='vim-wrapper'></div>" );
-            elements += "<a class='vimSlide-prev'>&#10094;</a>\n"; // Previous button
-            elements += "<a class='vimSlide-next'>&#10095;</a>\n"; // Next button
+                if ($(this).data('type') == "image") { // Template for images
+                    list += "<div class='vimSlide-item " + options.animation + " " + active +"'>\n";
+                    list += "<img src='"+ $(this).data('url') + "' alt='" +$(this).data('type') +"'>\n";
+                    list += "</div>\n";
+                } else if ($(this).data('type') == "video") { // Template for videos
+                    list += "<div class='vimSlide-item "+ options.animation + " " + active +"'>\n";
+                    list += "<video width='100%' height='500px'>\n";
+                    list += "<source src='" + $(this).data('url') + "'>\n"
+                    list += "</video>\n";
+                    list += "<span class='play-button'>&#9654;</span>";
+                    list += "</div>\n";
+                }
+                i++;
+            });
+            elements += "<a class='vimSlide-prev'></a>\n";
+            elements += "<a class='vimSlide-next'></a>\n";
             // Navigation dots
-            console.log(this.children.length);
             elements += "<div class='vimSlide-dots'>\n";
             for (var i = 0; i < this.children.length; i++) {
                 var active = i == 0 ? 'selected' : '';
                 elements += "<span class='vimSlide-dot " + active + "' data-vimSlide-dot-index='"+ i +"'></span>\n"
             }
             elements += "</div>";
+
+            $(this).html(list);
+            // $(this).append(list);
+            $(this).wrap( "<div class='vim-wrapper'></div>" );
             $( ".vim-wrapper" ).append( elements);
+
+            console.log($(this));
             $(this).css("background-color",options.defColor)
                 .mouseenter( function(){
                     $(this).css("background-color",options.hoverColor);
