@@ -8,21 +8,28 @@
     <link rel="stylesheet" href="css/vimsilder.css">
 </head>
 <body>
-    <ul class="vim-slider">
-        <li data-url="https://images.unsplash.com/photo-1560108836-f779b330b9f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" data-type="image"></li>
-        <li data-url="https://www.w3schools.com/tags/mov_bbb.mp4" data-type="video"></li>
-        <li data-url="https://images.unsplash.com/photo-1558342697-9657a85f357b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80" data-type="image"></li>
-    </ul>
+<div class="vim-slider" style="height: 100px;">
+
+</div>
+<ul class="vim-slider">
+    <li data-url="https://images.unsplash.com/photo-1560108836-f779b330b9f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" data-type="image"></li>
+    <li data-url="https://www.w3schools.com/tags/mov_bbb.mp4" data-type="video"></li>
+    <li data-url="https://images.unsplash.com/photo-1558342697-9657a85f357b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80" data-type="image"></li>
+</ul>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="js/vimslider.js"></script>
 <script>
 $( document ).ready(function() {
-    $('.vim-slider').vimslider({
+    $('.vim-slider').vimslider();
+    /*$('.vim-slider').vimslider({
+        hoverColor:"pink"
+    });*/
+    /*$('.vim-slider').vimslider({
         slideShow: true,
         interval: 3000,
         animation: 'slide'
-    });
+    });*/
 });
 </script>
 </body>

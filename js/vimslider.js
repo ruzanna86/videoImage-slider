@@ -6,39 +6,47 @@
 *
 * */
 
-(function ($) {
+(function($){
+    jQuery.fn.vimslider = function(options){
+        options = $.extend({
+            defColor:"aqua", //цвет элемента над которым нет курсора
+            hoverColor:"red" //цвет элемента на который наведен курсор
+        }, options);
 
-    var slider;
-
-    var defaults = {
-        slideShow: true,
-        interval: 500,
-        animation: 'slide'
-    };
-
-    $.fn.vimslider = function (options) {
-
-        if (this.length === 0) {
-            return this;
-        }
-
-        if (this.length > 1) {
-            this.each(function () {
-                $(this).vimslider(options);
+        var make = function(){
+            var i;
+            var elements = "";
+            $(this).children().each(function (index, value) {
+                console.log(value);
+                console.log(value['data-type']);
+                // console.log(value.attr('data-url'));
             });
-            return this;
-        }
+            console.log(this);
+            for (var i = 0; i < this.children.length; i++) {
+                var active = i == 0 ? 'active' : '';
+                console.log(this.children[i]);
+            }
+            $(this).wrap( "<div class='vim-wrapper'></div>" );
+            elements += "<a class='vimSlide-prev'>&#10094;</a>\n"; // Previous button
+            elements += "<a class='vimSlide-next'>&#10095;</a>\n"; // Next button
+            // Navigation dots
+            console.log(this.children.length);
+            elements += "<div class='vimSlide-dots'>\n";
+            for (var i = 0; i < this.children.length; i++) {
+                var active = i == 0 ? 'selected' : '';
+                elements += "<span class='vimSlide-dot " + active + "' data-vimSlide-dot-index='"+ i +"'></span>\n"
+            }
+            elements += "</div>";
+            $( ".vim-wrapper" ).append( elements);
+            $(this).css("background-color",options.defColor)
+                .mouseenter( function(){
+                    $(this).css("background-color",options.hoverColor);
+                })
+                .mouseleave( function(){
+                    $(this).css("background-color",options.defColor);
+                });
+        };
 
-        initialSlider(options, this);
-
-        // Join User Options with default options
-        var options = $.extend({}, defaults, options);
-
-        return this;
-    }
-
-    function Slider(options, items) {
-
-    }
-
-});
+        return this.each(make);
+    };
+})(jQuery);
