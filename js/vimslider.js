@@ -10,15 +10,18 @@
     jQuery.fn.vimslider = function(options){
         options = $.extend({
             slideShow: false,
-            interval: 500,
-            animation: "fade"
+            interval: 1500,
+            animation: "slide"
         }, options);
 
+        // Initialize Slider
         var make = function(){
-            var slides = [];
-            var i = 0;
-            var elements = "";
-            var list = "";
+            var slides = [],
+                i = 0,
+                elements = "",
+                list = "",
+                slideActive = 0;
+            // Change List items
             $(this).children().each(function () {
                 var data_obj = {};
                 data_obj['data-url'] = $(this).data('url');
@@ -65,33 +68,80 @@
             $(this).wrap( "<div class='vim-wrapper'></div>" );
             $( ".vim-wrapper" ).append( elements);
 
-            console.log($(this)[0].children[0]);
+            // Added List bject in slider each index
             for(var j = 0; j < this.children.length; j++) {
                 slides[j].obj = $(this)[0].children[j];
+                if($(slides[j].obj).hasClass('active')){
+                    slideActive = j;
+                }
             }
 
-            console.log(slides);
-            if(options.slideShow === true){
-
+            // Check if autoplay is true
+            if(options.slideShow == true){
+                setTimeout(slideAutoplay.bind(), options.interval);
             }
-
+            // Call Click functions
             allClicks();
 
+            // All click functions
             function allClicks(){
+                // Dots click event
                 $('.vimSlide-dots').children().each(function (index, value) {
                     $(value).click(function () {
                         var n = $(this).attr('data-vimSlide-dot-index');
                         n *= 1;
-                        console.log(n);
-                        console.log(this);
+                        slideActive = n;
                         $('.vimSlide-dots .vimSlide-dot').each(function (index) {
                             $(this).removeClass('selected');
-                            console.log($(slides[index]['obj']).removeClass('active'));
+                            $(slides[index]['obj']).removeClass('active');
                         });
                         $(this).addClass('selected');
                         $(slides[n]['obj']).addClass('active');
                     });
                 });
+                // Next Arrow click event
+                $('.vimSlide-next').click(function () {
+                    if(slideActive == (slides.length - 1)){
+                        slideActive = 0;
+                    }else{
+                        slideActive++;
+                    }
+                    objLoop(slideActive);
+                });
+                // Prev Arrow click event
+                $('.vimSlide-prev').click(function () {
+                    if(slideActive == 0){
+                        slideActive = (slides.length - 1);
+                    }else{
+                        slideActive--;
+                    }
+                    objLoop(slideActive);
+                });
+            }
+
+            // Added active/selected class in dots and list items
+            function objLoop() {
+                $('.vimSlide-dots .vimSlide-dot').each(function (index) {
+                    $(this).removeClass('selected');
+                    $(slides[index].obj).removeClass('active');
+                });
+                $('.vimSlide-dots .vimSlide-dot[data-vimslide-dot-index="'+slideActive+'"]').addClass('selected');
+                $(slides[slideActive].obj).addClass('active');
+            }
+            
+            // Added autoPlay function with Set Interval
+            function slideAutoplay(){
+                if(options.slideShow === true){
+                    if(slideActive == (slides.length - 1)){
+                        slideActive = 0;
+                    }else{
+                        slideActive++;
+                    }
+                    objLoop();
+                    setTimeout(slideAutoplay.bind(), options.interval);
+                }else{
+                    setTimeout(slideAutoplay.bind(), false);
+                }
             }
 
         };
