@@ -9,11 +9,9 @@
 (function($){
     jQuery.fn.vimslider = function(options){
         options = $.extend({
-            defColor:"#eee",
-            hoverColor:"aqua",
             slideShow: false,
             interval: 500,
-            animation: "slide"
+            animation: "fade"
         }, options);
 
         var make = function(){
@@ -22,14 +20,14 @@
             var elements = "";
             var list = "";
             $(this).children().each(function () {
-                var obj = {};
-                obj['data-url'] = $(this).data('url');
-                obj['data-type'] = $(this).data('type');
+                var data_obj = {};
+                data_obj['data-url'] = $(this).data('url');
+                data_obj['data-type'] = $(this).data('type');
                 var active = i == 0 ? 'active' : '';
                 if(active){
-                    obj['active'] = true;
+                    data_obj['active'] = true;
                 }else{
-                    obj['active'] = false;
+                    data_obj['active'] = false;
                 }
 
                 if ($(this).data('type') == "image") { // Template for images
@@ -38,9 +36,9 @@
                     list += "</div>\n";
                 } else if ($(this).data('type') == "video") { // Template for videos
                     if(active){
-                        obj['playing'] = true;
+                        data_obj['playing'] = true;
                     }else{
-                        obj['playing'] = false;
+                        data_obj['playing'] = false;
                     }
                     list += "<div class='vimSlide-item "+ options.animation + " " + active +"'>\n";
                     list += "<video width='100%' height='500px'>\n";
@@ -49,11 +47,10 @@
                     list += "<span class='play-button'>&#9654;</span>";
                     list += "</div>\n";
                 }
-                slides.push(obj);
+                slides.push(data_obj);
                 i++;
             });
 
-            console.log(slides);
             elements += "<a class='vimSlide-prev'></a>\n";
             elements += "<a class='vimSlide-next'></a>\n";
             // Navigation dots
@@ -65,35 +62,39 @@
             elements += "</div>";
 
             $(this).html(list);
-            // $(this).append(list);
             $(this).wrap( "<div class='vim-wrapper'></div>" );
             $( ".vim-wrapper" ).append( elements);
 
-            console.log($(this));
+            console.log($(this)[0].children[0]);
+            for(var j = 0; j < this.children.length; j++) {
+                slides[j].obj = $(this)[0].children[j];
+            }
+
+            console.log(slides);
             if(options.slideShow === true){
 
             }
 
-            $('.vimSlide-dots').children().each(function (index, value) {
-                $(value).click(function () {
-                    var n = $(this).attr('data-vimSlide-dot-index');
-                    n *= 1;
-                    console.log(n);
-                    console.log(this);
-                    /*slider.active = n;
-                    slider.showSlide();*/
+            allClicks();
+
+            function allClicks(){
+                $('.vimSlide-dots').children().each(function (index, value) {
+                    $(value).click(function () {
+                        var n = $(this).attr('data-vimSlide-dot-index');
+                        n *= 1;
+                        console.log(n);
+                        console.log(this);
+                        $('.vimSlide-dots .vimSlide-dot').each(function (index) {
+                            $(this).removeClass('selected');
+                            console.log($(slides[index]['obj']).removeClass('active'));
+                        });
+                        $(this).addClass('selected');
+                        $(slides[n]['obj']).addClass('active');
+                    });
                 });
-            });
-            
-            $(this).css("background-color",options.defColor)
-                .mouseenter( function(){
-                    $(this).css("background-color",options.hoverColor);
-                })
-                .mouseleave( function(){
-                    $(this).css("background-color",options.defColor);
-                });
+            }
+
         };
-        console.log(this.each);
         return this.each(make);
     };
 })(jQuery);

@@ -4,11 +4,13 @@ body{
 
 .vim-wrapper{
     background-color: #eee;
-    padding: 10px 0 20px;
+    padding: 10px;
+    position: relative;
 }
 .vim-slider{
    list-style: none;
    padding: 0;
+    margin: 0;
 }
 
 .vim-slider .vimSlide-item {
@@ -20,9 +22,10 @@ body{
     display: block;
 }
 
-.vim-slider .vimSlide-item img {
+.vim-slider .vimSlide-item img,
+.vim-slider .vimSlide-item video {
     width: 100%;
-    height: 700px;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -31,7 +34,8 @@ body{
 .vim-wrapper .vimSlide-prev {
     cursor: pointer;
     position: absolute;
-    top: calc(50% + 32px);
+    top: 50%;
+    margin-top: -32px;
     width: auto;
     padding: 16px;
     color: transparent;
@@ -44,12 +48,29 @@ body{
 
 .vim-wrapper .vimSlide-next {
     background-image: url("../images/arrow_right.png");
-    right: 0;
+    right: 10px;
 }
 
 .vim-wrapper .vimSlide-prev {
     background-image: url("../images/arrow_left.png");
-    left: 0;
+    left: 10px;
+}
+
+.vim-slider .play-button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    margin-top: -62px;
+    margin-left: -62px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 .vimSlide-dots {
@@ -68,7 +89,7 @@ body{
     transition: background-color 0.6s ease;
 }
 
-.selected, .vimSlide-dot:hover {
+.vimSlide-dot.selected, .vimSlide-dot:hover {
     background-color: #717171;
 }
 
