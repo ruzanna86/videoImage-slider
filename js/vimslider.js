@@ -7,144 +7,132 @@
 * */
 
 (function($){
-    jQuery.fn.vimslider = function(options){
-        options = $.extend({
-            slideShow: false,
-            interval: 1500,
-            animation: "slide"
-        }, options);
-
-        // Initialize Slider
-        var make = function(){
-            var slides = [],
-                i = 0,
+    $.vimslider = function(element, options) {
+        this.options = {};
+        var that = element;
+        this.init = function(element, options) {
+            this.options = $.extend({}, $.vimslider.defaults, options);
+            this.active = 0;
+            var wrapper = element[0],
+                slides = [],
                 elements = "",
-                list = "",
-                slideActive = 0;
-            // Change List items
-            $(this).children().each(function () {
+                list = "";
+            for(var i = 0; i < element.children().length; i++){
+                var items = $(wrapper.children[i]);
                 var data_obj = {};
-                data_obj['data-url'] = $(this).data('url');
-                data_obj['data-type'] = $(this).data('type');
+                data_obj['data-url'] = items.data('url');
+                data_obj['data-type'] = items.data('type');
                 var active = i == 0 ? 'active' : '';
-                if(active){
-                    data_obj['active'] = true;
-                }else{
-                    data_obj['active'] = false;
-                }
 
-                if ($(this).data('type') == "image") { // Template for images
-                    list += "<div class='vimSlide-item " + options.animation + " " + active +"'>\n";
-                    list += "<img src='"+ $(this).data('url') + "' alt='" +$(this).data('type') +"'>\n";
+                if (items.data('type') == "image") { // Template for images
+                    list += "<div class='vimSlide-item " + this.options.animation + " " + active +"'>\n";
+                    list += "<img src='"+ items.data('url') + "' alt='" +items.data('type') +"'>\n";
                     list += "</div>\n";
-                } else if ($(this).data('type') == "video") { // Template for videos
-                    if(active){
-                        data_obj['playing'] = true;
-                    }else{
-                        data_obj['playing'] = false;
-                    }
-                    list += "<div class='vimSlide-item "+ options.animation + " " + active +"'>\n";
+                } else if (items.data('type') == "video") { // Template for videos
+                    list += "<div class='vimSlide-item "+ this.options.animation + " " + active +"'>\n";
                     list += "<video width='100%' height='500px'>\n";
-                    list += "<source src='" + $(this).data('url') + "'>\n"
+                    list += "<source src='" + items.data('url') + "'>\n"
                     list += "</video>\n";
                     list += "<span class='play-button'>&#9654;</span>";
                     list += "</div>\n";
                 }
                 slides.push(data_obj);
-                i++;
-            });
-
+            }
             elements += "<a class='vimSlide-prev'></a>\n";
             elements += "<a class='vimSlide-next'></a>\n";
             // Navigation dots
             elements += "<div class='vimSlide-dots'>\n";
-            for (var i = 0; i < this.children.length; i++) {
+            for (var i = 0; i < element.children().length; i++) {
                 var active = i == 0 ? 'selected' : '';
                 elements += "<span class='vimSlide-dot " + active + "' data-vimSlide-dot-index='"+ i +"'></span>\n"
             }
             elements += "</div>";
 
-            $(this).html(list);
-            $(this).wrap( "<div class='vim-wrapper'></div>" );
-            $( ".vim-wrapper" ).append( elements);
+            $(wrapper).html(list);
+            $(wrapper).wrap( "<div class='vim-wrapper'></div>" );
+            $(wrapper).after( elements );
+            this.controls = elements;
 
             // Added List bject in slider each index
-            for(var j = 0; j < this.children.length; j++) {
-                slides[j].obj = $(this)[0].children[j];
-                if($(slides[j].obj).hasClass('active')){
-                    slideActive = j;
-                }
+            for(var j = 0; j < element.children().length; j++) {
+                slides[j].obj = $(element[0].children[j]);
             }
-
-            // Check if autoplay is true
-            if(options.slideShow == true){
-                setTimeout(slideAutoplay.bind(), options.interval);
-            }
-            // Call Click functions
-            allClicks();
-
-            // All click functions
-            function allClicks(){
-                // Dots click event
-                $('.vimSlide-dots').children().each(function (index, value) {
-                    $(value).click(function () {
-                        var n = $(this).attr('data-vimSlide-dot-index');
-                        n *= 1;
-                        slideActive = n;
-                        $('.vimSlide-dots .vimSlide-dot').each(function (index) {
-                            $(this).removeClass('selected');
-                            $(slides[index]['obj']).removeClass('active');
-                        });
-                        $(this).addClass('selected');
-                        $(slides[n]['obj']).addClass('active');
-                    });
-                });
-                // Next Arrow click event
-                $('.vimSlide-next').click(function () {
-                    if(slideActive == (slides.length - 1)){
-                        slideActive = 0;
-                    }else{
-                        slideActive++;
-                    }
-                    objLoop(slideActive);
-                });
-                // Prev Arrow click event
-                $('.vimSlide-prev').click(function () {
-                    if(slideActive == 0){
-                        slideActive = (slides.length - 1);
-                    }else{
-                        slideActive--;
-                    }
-                    objLoop(slideActive);
-                });
-            }
-
-            // Added active/selected class in dots and list items
-            function objLoop() {
-                $('.vimSlide-dots .vimSlide-dot').each(function (index) {
-                    $(this).removeClass('selected');
-                    $(slides[index].obj).removeClass('active');
-                });
-                $('.vimSlide-dots .vimSlide-dot[data-vimslide-dot-index="'+slideActive+'"]').addClass('selected');
-                $(slides[slideActive].obj).addClass('active');
-            }
-            
-            // Added autoPlay function with Set Interval
-            function slideAutoplay(){
-                if(options.slideShow === true){
-                    if(slideActive == (slides.length - 1)){
-                        slideActive = 0;
-                    }else{
-                        slideActive++;
-                    }
-                    objLoop();
-                    setTimeout(slideAutoplay.bind(), options.interval);
-                }else{
-                    setTimeout(slideAutoplay.bind(), false);
-                }
-            }
-
+            this.elements = slides;
+            this.clickEvents(this);
         };
-        return this.each(make);
+        this.autoplay = function () {
+            if(this.options.slideShow === true){
+                if(this.active == (this.elements.length - 1)){
+                    this.active = 0;
+                }else{
+                    this.active++;
+                }
+                // this.changeActive(this);
+                this.changeActive(this);
+                setTimeout(this.autoplay.bind(this), this.options.interval);
+            }else{
+                setTimeout(this.autoplay.bind(this), false);
+            }
+        };
+        this.changeActive = function (mySlider) {
+            $(that[0]).siblings('.vimSlide-dots').children().each(function (index) {
+                $(this).removeClass('selected');
+                $(mySlider.elements[index].obj).removeClass('active');
+                if(index == mySlider.active){
+                    $(this).addClass('selected');
+                    $(mySlider.elements[mySlider.active].obj).addClass('active');
+                }
+            });
+        };
+        this.clickEvents = function (mySlider) {
+            $(that[0]).siblings('.vimSlide-dots').children().each(function (index, value) {
+                $(value).click(function () {
+                    var n = $(this).attr('data-vimSlide-dot-index');
+                    n *= 1;
+                    mySlider.active = n;
+                    $(that[0]).siblings('.vimSlide-dots').children().each(function (index) {
+                        $(this).removeClass('selected');
+                        $(mySlider.elements[index].obj).removeClass('active');
+                    });
+                    $(this).addClass('selected');
+                    $(mySlider.elements[mySlider.active].obj).addClass('active');
+                });
+            });
+            // Next Arrow click event
+            $(that[0]).siblings('.vimSlide-next').click(function () {
+                if(mySlider.active == (mySlider.elements.length - 1)){
+                    mySlider.active = 0;
+                }else{
+                    mySlider.active++;
+                }
+                mySlider.changeActive(mySlider);
+            });
+            // Prev Arrow click event
+            $(that[0]).siblings('.vimSlide-prev').click(function () {
+                if(mySlider.active == 0){
+                    mySlider.active = (mySlider.elements.length - 1);
+                }else{
+                    mySlider.active--;
+                }
+                mySlider.changeActive(mySlider);
+            });
+        };
+        this.init(element, options);
+        if (options.slideShow === true) {
+            setTimeout(this.autoplay.bind(this), options.interval);
+        }else{
+        }
     };
+
+    $.fn.vimslider = function(options) { //Using only one method off of $.fn
+        return this.each(function() {
+            (new $.vimslider($(this), options));
+        });
+    };
+
+    $.vimslider.defaults = {
+        slideShow: false,
+        interval: 1500,
+        animation: "fade"
+    }
 })(jQuery);
