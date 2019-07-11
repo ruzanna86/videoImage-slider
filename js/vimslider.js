@@ -19,25 +19,23 @@
                 list = "";
             for(var i = 0; i < element.children().length; i++){
                 var items = $(wrapper.children[i]);
-                var data_obj = {};
-                data_obj['data-url'] = items.data('url');
-                data_obj['data-type'] = items.data('type');
+                var data_obj = items.data();
                 var active = i == 0 ? 'active' : '';
 
-                if (items.data('type') == "image") { // Template for images
+                if (data_obj.type == "image") { // Template for images
                     list += "<div class='vimSlide-item " + this.options.animation + " " + active +"'>\n";
-                    list += "<img src='"+ items.data('url') + "' alt='" +items.data('type') +"'>\n";
+                    list += "<img src='"+ data_obj.url + "' alt='" + data_obj.type +"'>\n";
                     list += "</div>\n";
-                } else if (items.data('type') == "video") { // Template for videos
+                } else if (data_obj.type == "video") { // Template for videos
                     list += "<div class='vimSlide-item "+ this.options.animation + " " + active +"'>\n";
-                    list += "<video width='100%' height='500px'>\n";
-                    list += "<source src='" + items.data('url') + "'>\n"
+                    list += "<video width='100%' height='500px' controls>\n";
+                    list += "<source src='" + data_obj.url + "'>\n"
                     list += "</video>\n";
-                    list += "<span class='play-button'>&#9654;</span>";
                     list += "</div>\n";
                 }
                 slides.push(data_obj);
             }
+            console.log(slides);
             elements += "<a class='vimSlide-prev'></a>\n";
             elements += "<a class='vimSlide-next'></a>\n";
             // Navigation dots
