@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6e3aba-ab7c-46f9-9f12-a4ec9cf48eaa" name="Default" comment="Added list of images(video) in html file.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/vimsilder.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/vimsilder.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/vimslider.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vimslider.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +29,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="9" />
-          <entry key="JavaScript" value="32" />
+          <entry key="CSS" value="88" />
+          <entry key="HTML" value="19" />
+          <entry key="JavaScript" value="371" />
         </counts>
       </usages-collector>
     </session>
@@ -37,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="33" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="33" />
+            <state relative-caret-position="663">
+              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -50,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/vimslider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
+            <state relative-caret-position="520">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -62,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/vimsilder.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="27" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="27" />
+            <state relative-caret-position="860">
+              <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -86,9 +90,19 @@
       <find>console</find>
       <find>controls</find>
       <find>vemslider</find>
+      <find>myvideo</find>
+      <find>myVideo</find>
+      <find>options</find>
+      <find>elements</find>
+      <find>wrapper</find>
+      <find>slides</find>
+      <find>button</find>
+      <find>that</find>
     </findStrings>
     <replaceStrings>
+      <replace>myVideo</replace>
       <replace>vimslider</replace>
+      <replace>navigations</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -112,7 +126,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1386" />
@@ -177,18 +191,18 @@
       <updated>1562263613444</updated>
       <workItem from="1562263616771" duration="16599000" />
       <workItem from="1562363205644" duration="30326000" />
-      <workItem from="1562827139352" duration="2833000" />
+      <workItem from="1562827139352" duration="6083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49891000" />
+    <option name="totallyTimeSpent" value="53141000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25479743" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13166311" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -236,15 +250,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/vimsilder.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="27" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="27" />
+        <state relative-caret-position="860">
+          <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="33" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="33" />
+        <state relative-caret-position="663">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -254,8 +268,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/vimslider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
+        <state relative-caret-position="520">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

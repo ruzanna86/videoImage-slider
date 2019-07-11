@@ -56,23 +56,6 @@ body{
     left: 10px;
 }
 
-.vim-slider .play-button {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    margin-top: -62px;
-    margin-left: -62px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 80px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-
 .vimSlide-dots {
     margin-top: 10px;
     text-align: center;
@@ -91,6 +74,42 @@ body{
 
 .vimSlide-dot.selected, .vimSlide-dot:hover {
     background-color: #717171;
+}
+
+/* Media Queries*/
+@media (max-width: 1024px) {
+    .vim-slider .vimSlide-item img,
+    .vim-slider .vimSlide-item video{
+        height: 500px;
+    }
+}
+
+@media (max-width: 991px) {
+    .vim-slider .vimSlide-item img,
+    .vim-slider .vimSlide-item video{
+        height: 450px;
+    }
+}
+
+@media (max-width: 767px) {
+    .vim-slider .vimSlide-item img,
+    .vim-slider .vimSlide-item video{
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .vim-slider .vimSlide-item img,
+    .vim-slider .vimSlide-item video{
+        height: 350px;
+    }
+}
+
+@media (max-width: 425px) {
+    .vim-slider .vimSlide-item img,
+    .vim-slider .vimSlide-item video{
+        height: 300px;
+    }
 }
 
 

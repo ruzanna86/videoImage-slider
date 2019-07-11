@@ -8,18 +8,17 @@
 
 (function($){
     $.vimslider = function(element, options) {
-        this.options = {};
-        var that = element;
+        var that = element[0];
+        var autoPlay;
         this.init = function(element, options) {
             this.options = $.extend({}, $.vimslider.defaults, options);
             this.active = 0;
             this.playVideo = false;
-            var wrapper = element[0],
-                slides = [],
-                elements = "",
+            var slides = [],
+                navigations = "",
                 list = "";
             for(var i = 0; i < element.children().length; i++){
-                var items = $(wrapper.children[i]);
+                var items = $(that.children[i]);
                 var data_obj = items.data();
                 var active = i == 0 ? 'active' : '';
 
@@ -36,40 +35,47 @@
                 }
                 slides.push(data_obj);
             }
-            elements += "<a class='vimSlide-prev'></a>\n";
-            elements += "<a class='vimSlide-next'></a>\n";
-            // Navigation dots
-            elements += "<div class='vimSlide-dots'>\n";
+            // Add Next/Prev Buttons
+            navigations += "<a class='vimSlide-prev'></a>\n";
+            navigations += "<a class='vimSlide-next'></a>\n";
+            // Add Navigation dots
+            navigations += "<div class='vimSlide-dots'>\n";
             for (var i = 0; i < element.children().length; i++) {
                 var active = i == 0 ? 'selected' : '';
-                elements += "<span class='vimSlide-dot " + active + "' data-vimSlide-dot-index='"+ i +"'></span>\n"
+                navigations += "<span class='vimSlide-dot " + active + "' data-vimSlide-dot-index='"+ i +"'></span>\n"
             }
-            elements += "</div>";
+            navigations += "</div>";
 
-            $(wrapper).html(list);
-            $(wrapper).wrap( "<div class='vim-wrapper'></div>" );
-            $(wrapper).after( elements );
+            // Replace With new List & Add Navigations
+            $(that).html(list);
+            $(that).wrap( "<div class='vim-wrapper'></div>" );
+            $(that).after( navigations );
 
             // Added List Object in slider each index
             for(var j = 0; j < element.children().length; j++) {
                 slides[j].obj = $(element[0].children[j]);
             }
             this.elements = slides;
+            // Call All Click Events & Video Event
             this.clickEvents(this);
             this.videoControl(this);
+
+            if (options.slideShow === true) {
+                this.currentInterval();
+            }
         };
-        this.nextSlide = function (that) {
-            if(that.options.slideShow === true && that.playVideo === false ){
-                if(that.active == (that.elements.length - 1)){
-                    that.active = 0;
+        this.nextSlide = function () {
+            if(this.options.slideShow === true && this.playVideo === false ){
+                if(this.active == (this.elements.length - 1)){
+                    this.active = 0;
                 }else{
-                    that.active++;
+                    this.active++;
                 }
-                that.updateFrame(that);
+                this.updateFrame(this);
             }
         };
         this.updateFrame = function (mySlider) {
-            $(that[0]).siblings('.vimSlide-dots').children().each(function (index) {
+            $(that).siblings('.vimSlide-dots').children().each(function (index) {
                 $(this).removeClass('selected');
                 $(mySlider.elements[index].obj).removeClass('active');
                 if(index == mySlider.active){
@@ -79,59 +85,61 @@
             });
         };
         this.clickEvents = function (mySlider) {
-            $(that[0]).siblings('.vimSlide-dots').children().each(function (index, value) {
+            // Navigation dots Click event
+            $(that).siblings('.vimSlide-dots').children().each(function (index, value) {
                 $(value).click(function () {
                     var n = $(this).attr('data-vimSlide-dot-index');
                     n *= 1;
                     mySlider.active = n;
-                    $(that[0]).siblings('.vimSlide-dots').children().each(function (index) {
+                    $(that).siblings('.vimSlide-dots').children().each(function (index) {
                         $(this).removeClass('selected');
                         $(mySlider.elements[index].obj).removeClass('active');
                     });
                     $(this).addClass('selected');
                     $(mySlider.elements[mySlider.active].obj).addClass('active');
+                    clearInterval(autoPlay);
+                    mySlider.currentInterval();
                 });
             });
             // Next Arrow click event
-            $(that[0]).siblings('.vimSlide-next').click(function () {
+            $(that).siblings('.vimSlide-next').click(function () {
                 if(mySlider.active == (mySlider.elements.length - 1)){
                     mySlider.active = 0;
                 }else{
                     mySlider.active++;
                 }
                 mySlider.updateFrame(mySlider);
+                clearInterval(autoPlay);
+                mySlider.currentInterval();
             });
             // Prev Arrow click event
-            $(that[0]).siblings('.vimSlide-prev').click(function () {
+            $(that).siblings('.vimSlide-prev').click(function () {
                 if(mySlider.active == 0){
                     mySlider.active = (mySlider.elements.length - 1);
                 }else{
                     mySlider.active--;
                 }
                 mySlider.updateFrame(mySlider);
+                clearInterval(autoPlay);
+                mySlider.currentInterval();
             });
         };
         this.videoControl = function (mySlider) {
-            var myvideo = $(that[0]).find('video');
-            myvideo.on('play', function() {
+            var myVideo = $(that).find('video');
+            myVideo.on('play', function() {
                 mySlider.playVideo = true;
 
             });
-            $(myvideo).on('pause', function() {
+            $(myVideo).on('pause', function() {
                 mySlider.playVideo = false;
             });
+        };
+        this.currentInterval = function () {
+            autoPlay = setInterval(this.nextSlide.bind(this), this.options.interval);
         };
 
         this.init(element, options);
 
-        if (options.slideShow === true) {
-            var mySlider = this;
-            setInterval(function() {
-
-                mySlider.nextSlide(mySlider);
-
-            } , mySlider.options.interval);
-        }
     };
 
     $.fn.vimslider = function(options) { //Using only one method off of $.fn
