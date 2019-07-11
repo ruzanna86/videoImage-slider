@@ -13,6 +13,7 @@
         this.init = function(element, options) {
             this.options = $.extend({}, $.vimslider.defaults, options);
             this.active = 0;
+            this.playVideo = false;
             var wrapper = element[0],
                 slides = [],
                 elements = "",
@@ -35,7 +36,6 @@
                 }
                 slides.push(data_obj);
             }
-            console.log(slides);
             elements += "<a class='vimSlide-prev'></a>\n";
             elements += "<a class='vimSlide-next'></a>\n";
             // Navigation dots
@@ -49,30 +49,26 @@
             $(wrapper).html(list);
             $(wrapper).wrap( "<div class='vim-wrapper'></div>" );
             $(wrapper).after( elements );
-            this.controls = elements;
 
-            // Added List bject in slider each index
+            // Added List Object in slider each index
             for(var j = 0; j < element.children().length; j++) {
                 slides[j].obj = $(element[0].children[j]);
             }
             this.elements = slides;
             this.clickEvents(this);
+            this.videoControl(this);
         };
-        this.autoplay = function () {
-            if(this.options.slideShow === true){
-                if(this.active == (this.elements.length - 1)){
-                    this.active = 0;
+        this.nextSlide = function (that) {
+            if(that.options.slideShow === true && that.playVideo === false ){
+                if(that.active == (that.elements.length - 1)){
+                    that.active = 0;
                 }else{
-                    this.active++;
+                    that.active++;
                 }
-                // this.changeActive(this);
-                this.changeActive(this);
-                setTimeout(this.autoplay.bind(this), this.options.interval);
-            }else{
-                setTimeout(this.autoplay.bind(this), false);
+                that.updateFrame(that);
             }
         };
-        this.changeActive = function (mySlider) {
+        this.updateFrame = function (mySlider) {
             $(that[0]).siblings('.vimSlide-dots').children().each(function (index) {
                 $(this).removeClass('selected');
                 $(mySlider.elements[index].obj).removeClass('active');
@@ -103,7 +99,7 @@
                 }else{
                     mySlider.active++;
                 }
-                mySlider.changeActive(mySlider);
+                mySlider.updateFrame(mySlider);
             });
             // Prev Arrow click event
             $(that[0]).siblings('.vimSlide-prev').click(function () {
@@ -112,13 +108,29 @@
                 }else{
                     mySlider.active--;
                 }
-                mySlider.changeActive(mySlider);
+                mySlider.updateFrame(mySlider);
             });
         };
+        this.videoControl = function (mySlider) {
+            var myvideo = $(that[0]).find('video');
+            myvideo.on('play', function() {
+                mySlider.playVideo = true;
+
+            });
+            $(myvideo).on('pause', function() {
+                mySlider.playVideo = false;
+            });
+        };
+
         this.init(element, options);
+
         if (options.slideShow === true) {
-            setTimeout(this.autoplay.bind(this), options.interval);
-        }else{
+            var mySlider = this;
+            setInterval(function() {
+
+                mySlider.nextSlide(mySlider);
+
+            } , mySlider.options.interval);
         }
     };
 
