@@ -2,6 +2,11 @@ body{
     margin: 0;
 }
 
+.vim-container {
+    margin: 50px auto;
+    max-width: 800px;
+}
+
 .vim-wrapper{
     background-color: #eee;
     padding: 10px;
